@@ -7,6 +7,6 @@ const schema = new mongoose.Schema({
     "intro": String
 });
 
-const model = mongoose.model('Services', schema);
+const model = mongoose.model('Service', schema);
 
 module.exports = model;

@@ -1,7 +1,8 @@
-const   mongoose        = require('mongoose'),
-        passportLocal   = require('passport-local-mongoose');
+const mongoose      = require('mongoose'),
+      passportLocal = require('passport-local-mongoose');
 
 const schema = new mongoose.Schema({
+    "name": String,
     "active": {
         "type": Boolean,
         "default": true
@@ -22,6 +23,6 @@ const schema = new mongoose.Schema({
 
 schema.plugin(passportLocal);
 
-const model = mongoose.model('Services', schema);
+const model = mongoose.model('User', schema);
 
 module.exports = model;

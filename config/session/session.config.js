@@ -1,6 +1,6 @@
-const session  = require('express-session'),
-      mongoose = require('mongoose'),
-      store    = require('connect-mongo')(sessions);
+const session  = require('express-session');
+      mongoose = require('mongoose');
+      store    = require('connect-mongo')(session);
 
 const SESSION_CONFIG = {
     secret:"dalk2019",

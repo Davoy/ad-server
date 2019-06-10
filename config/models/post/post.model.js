@@ -7,11 +7,7 @@ const schema = new mongoose.Schema({
         "type": Date,
         "default": Date.now
     },
-    "tags": [
-        {
-            "tag": String
-        }
-    ],
+    "tag": String,
     "description": String,
     "author": String,
     "thumbnail": String,
@@ -42,6 +38,6 @@ const schema = new mongoose.Schema({
     ]
 });
 
-const model = mongoose.model('Project', schema);
+const model = mongoose.model('Post', schema);
 
 module.exports = model;

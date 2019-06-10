@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ./partials/head/head.ejs %> 
+  </head>
+  <body id="page-top">
+    <!------------------------------------ PARTIALS -->
+    <%- include ./partials/navigation/navigation.ejs %>
+    <!------------------------ CONTENT -->
+    <%- include('./content/'+page+'/'+page+'.ejs') %>  
+
+    <!-- BACK TO TOP AND PRELOADERS -->
+    <a href="#" class="back-to-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+    <div id="preloader"></div>
+
+    <!-- SCRIPTS -->
+    <%- include ./partials/scripts/scripts.ejs %>
+  </body>
+</html>
