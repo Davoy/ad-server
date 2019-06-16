@@ -33,13 +33,13 @@ function addToArray(field){
     let html = `
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="field1">${field == 'socials' ? 'URL':'Title'}</label>
                         <input type="text" name="field1" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="field2">${field == 'socials' ? 'Social icon fontawesome 4.0+':'Year Started (YYYY)'}</label>
                         <input type="text" name="field2" class="form-control form-control-sm">
@@ -113,13 +113,13 @@ function onEdit(id, val1, val2, field){
     let html = `
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="updateField1">${field == 'socials' ? 'URL':'Title'}</label>
                         <input type="text" name="updateField1" class="form-control form-control-sm" value="${val1}">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="updateField2">${field == 'socials' ? 'Social icon fontawesome 4.0+':'Year'}</label>
                         <input type="text" name="updateField2" class="form-control form-control-sm" value="${val2}">

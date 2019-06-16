@@ -1,5 +1,5 @@
 const   router          = require('express').Router(),
-        objectid        = require('mongoose').objectId,
+        objectid        = require('mongoose').Types.ObjectId,
         serviceModel    = require('../../config/models/service/service.model');
 
 // index 
@@ -13,7 +13,29 @@ router.get('', (req, res)=>{
             });
         }else{
             res.json({
-                data: docs
+                docs: docs
+            });
+        }
+    });
+});
+
+router.post('/create', (req, res)=>{
+    let newService = new serviceModel();
+    newService.title = req.body.title;
+    newService.description = req.body.description;
+    newService.icon = req.body.icon;
+
+    serviceModel.create(newService, (error, doc)=>{
+        if(error){
+            console.log(error);
+            res.json({
+                error: true,
+                message: 'Unable to create new service'
+            });
+        }else{
+            res.json({
+                error: false,
+                doc: doc
             });
         }
     });
@@ -21,44 +43,12 @@ router.get('', (req, res)=>{
 
 // update 
 router.put('/:id', (req, res)=>{
-    let serviceUpdate = [
-        {
-            title: req.body.title1,
-            description: req.body.description1,
-            icon: req.body.icon1,
-            intro: req.body.intro1,
-        },
-        {
-            title: req.body.title2,
-            description: req.body.description2,
-            icon: req.body.icon2,
-            intro: req.body.intro2,
-        },
-        {
-            title: req.body.title3,
-            description: req.body.description3,
-            icon: req.body.icon3,
-            intro: req.body.intro3,
-        },
-        {
-            title: req.body.title4,
-            description: req.body.description4,
-            icon: req.body.icon4,
-            intro: req.body.intro4,
-        },
-        {
-            title: req.body.title5,
-            description: req.body.description5,
-            icon: req.body.icon5,
-            intro: req.body.intro5,
-        },
-        {
-            title: req.body.title6,
-            description: req.body.description6,
-            icon: req.body.icon6,
-            intro: req.body.intro6,
-        }
-    ];
+    console.log(req.body);
+    let serviceUpdate = {
+        title: req.body.title,
+        description: req.body.description,
+        icon: req.body.icon
+    }
 
     serviceModel.findOneAndUpdate({_id: objectid(req.params.id)}, serviceUpdate, (error, doc)=>{
         if(error){
@@ -70,7 +60,26 @@ router.put('/:id', (req, res)=>{
         }else{
             res.json({
                 error: false,
-                message: 'Services Updated.'
+                message: 'Services Updated.',
+                doc: doc
+            });
+        }
+    });
+});
+
+router.delete('/:id', (req, res)=>{
+    serviceModel.findOneAndDelete({_id: objectid(req.params.id)}, (error, doc)=>{
+        if(error){
+            console.log(error);
+            res.json({
+                error: true,
+                message: 'Unable to remove service'
+            });
+        }else{
+            res.json({
+                error: false,
+                message: 'Service removed',
+                doc: doc
             });
         }
     });

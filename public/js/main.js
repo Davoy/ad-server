@@ -151,4 +151,25 @@
 			});
 			$('.contactSocialsInsert').html(html);
 		});
+
+		// services
+		$.get('/api/services', (response)=>{
+			let html = '';
+			response.docs.forEach((doc)=>{
+				html += `
+					<div class="col-md-4">
+						<div class="service-box">
+							<div class="service-ico">
+								<span class="ico-circle"><i class="${doc.icon}"></i></span>
+							</div>
+							<div class="service-content">
+								<h2 class="s-title">${doc.title}</h2>
+								<p class="s-description text-center">${doc.description}</p>
+							</div>
+						</div>
+					</div>\n
+				`;
+			});
+			$('.servicesInsert').html(html);
+		});
 })(jQuery);
