@@ -1,10 +1,10 @@
 const   router      = require('express').Router(),
-        objectid    = require('mongoose').objectId,
-        homeModel  = require('../../config/models/about/about.model');
+        objectid    = require('mongoose').Types.ObjectId,
+        homeModel  = require('../../config/models/home/home.model');
 
 // index 
 router.get('', (req, res)=>{
-    homeModel.find({}, (error, docs)=>{
+    homeModel.findOne({}, (error, doc)=>{
         if(error){
             console.log(error);
             res.json({
@@ -13,20 +13,20 @@ router.get('', (req, res)=>{
             });
         }else{
             res.json({
-                data: docs
+                doc: doc
             });
         }
     });
 });
 
 // update 
-router.put('/:id', (req, res)=>{
+router.put('', (req, res)=>{
     let homeUpdate = {
         headline: req.body.headline,
         typings: req.body.typings
     }
 
-    homeModle.findOneAndUpdate({_id: objectid(req.params.id)}, homeUpdate, (error, doc)=>{
+    homeModel.findOneAndUpdate({}, homeUpdate, {new: true, upsert: true}, (error, doc)=>{
         if(error){
             console.log(error);
             res.json({
@@ -36,7 +36,8 @@ router.put('/:id', (req, res)=>{
         }else{
             res.json({
                 error: false,
-                message: 'Home data updated'
+                message: 'Home data updated',
+                doc: doc
             });
         }
     });

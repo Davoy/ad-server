@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutImage">Image</label>
+                <input type="text" name="aboutImage" class="form-control form-control-sm" placeholder="image url">
+            </div>
+        </div>
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutName">Name</label>
+                <input type="text" name="aboutName" class="form-control form-control-sm" placeholder="display name">
+            </div>
+        </div>
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutProfession">Profession</label>
+                <input type="text" name="aboutProfession" class="form-control form-control-sm" placeholder="profession title/desired title">
+            </div>
+        </div>
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutEmail">Email</label>
+                <input type="email" name="aboutEmail" class="form-control form-control-sm" placeholder="contact email address">
+            </div>
+        </div>
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutPhone">Phone</label>
+                <input type="text" name="aboutPhone" class="form-control form-control-sm" placeholder="phone number">
+            </div>
+        </div>
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutLocation">Location</label>
+                <input type="text" name="aboutLocation" class="form-control form-control-sm" placeholder="business location">
+            </div>
+        </div>
+        <div class="col-md-6 px-1">
+            <div class="form-group text-left">
+                <label for="aboutBio">Bio</label>
+                <textarea name="aboutBio" class="form-control form-control-sm" placeholder="some words about yourself and aspirations/desires/goals(html/bs friendly)"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6 p-1 text-left">
+            <label for="aboutSocials">Socials</label><button class="btn btn-sm btn-outline-primary p-0 px-1 ml-2 addSocial" onclick="addToArray('socials')">add</button>
+            <div class="container-fluid d-flex flex-wrap socialGroup border rounded mb-2"></div>
+            <label for="aboutSkills">Skills</label><button class="btn btn-sm btn-outline-primary p-0 px-1 ml-2 addSkill" onclick="addToArray('skills')">add</button>
+            <div class="container-fluid d-flex flex-wrap skillGroup border rounded"></div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-success btn-block btn-lg updateAbout">
+                <span class="onSubmitted">Update</span>
+                <span class="d-none onSubmitted"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+            </button>
+        </div>
+    </div>
+</div>

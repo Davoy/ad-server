@@ -13,6 +13,12 @@ const schema = new mongoose.Schema({
             "icon": String
         }
     ],
+    "skills":[
+        {
+            "title": String,
+            "year": String
+        }
+    ],
     "about": String
 });
 

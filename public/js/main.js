@@ -89,18 +89,6 @@
 		}
 	});
 
-	/*--/ Star Typed /--*/
-	if ($('.text-slider').length == 1) {
-    var typed_strings = $('.text-slider-items').text();
-		var typed = new Typed('.text-slider', {
-			strings: typed_strings.split(','),
-			typeSpeed: 80,
-			loop: true,
-			backDelay: 1100,
-			backSpeed: 30
-		});
-	}
-
 	/*--/ Testimonials owl /--*/
 	$('#testimonial-mf').owlCarousel({
 		margin: 20,
@@ -114,4 +102,53 @@
 		}
 	});
 
+	// LOAD HOME DATA ADN START TYPINGS
+	// home data
+	$.get('/api/home', (response)=>{
+		$('.homeHeadlineInsert').text(response.doc.headline);
+		$('.homeTypingsInsert').html(response.doc.typings.join(', '));
+		if ($('.text-slider').length == 1) {
+			var typed_strings = $('.text-slider-items').text();
+			var typed = new Typed('.text-slider', {
+					strings: typed_strings.split(','),
+					typeSpeed: 80,
+					loop: true,
+					backDelay: 1100,
+					backSpeed: 30
+			});
+		}
+	});
+
+	// about data
+		$.get('/api/about', (response)=>{
+			$('.aboutImageInsert').attr('src',response.doc.image);
+			$('.aboutNameInsert').text(response.doc.name);
+			$('.aboutProfessionInsert').text(response.doc.profession);
+			$('.aboutEmailInsert').text(response.doc.email);
+			$('.contactLocationInsert').text(response.doc.email);
+			$('.aboutPhoneInsert').text(response.doc.phone);
+			$('.contactPhoneInsert').text(response.doc.phone);
+			$('.contactEmailInsert').text(response.doc.location);
+			$('.aboutBioInsert').html(response.doc.about);
+			let html = '';
+			response.doc.skills.forEach((skill)=>{
+				html += `
+					<span>${skill.title}</span> <small class="pull-right">${new Date().getFullYear()-skill.year}yrs</small>
+					<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: ${(new Date().getFullYear()-skill.year)/10 * 100}%;" aria-valuenow="${(new Date().getFullYear()-skill.year)/10}" aria-valuemin="0"aria-valuemax="100">                                    
+							</div>
+					</div>\n
+				`;
+			});
+			$('.aboutSkillsInsert').html(html);
+			html = '';
+			response.doc.socials.forEach((social)=>{
+				html += `
+					<li>
+						<a href="${social.url}"><span class="ico-circle"><i class="${social.icon}"></i></span></a>
+					</li>
+				`;
+			});
+			$('.contactSocialsInsert').html(html);
+		});
 })(jQuery);
