@@ -38,12 +38,6 @@
 		}, 1000);
 	});
 
-	/*--/ Star Counter /--*/
-	$('.counter').counterUp({
-		delay: 15,
-		time: 2000
-	});
-
 	/*--/ Star Scrolling nav /--*/
 	$('a.js-scroll[href*="#"]:not([href="#"])').on("click", function () {
 		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -208,5 +202,31 @@
 				`;
 			});
 			$('.projectsInsert').html(html);
+		});
+
+		// Counters
+		$.get('/api/counters', (response)=>{
+			let html = '';
+			response.docs.forEach((doc)=>{
+				html += `
+					<div class="col-sm-3 col-lg-3">
+						<div class="counter-box counter-box pt-4 pt-md-0">
+							<div class="counter-ico">
+								<span class="ico-circle"><i class="${doc.icon}"></i></span>
+							</div>
+							<div class="counter-num">
+								<p class="counter">${doc.count}</p>
+								<span class="counter-text">${doc.title}</span>
+							</div>
+						</div>
+					</div>\n
+				`;
+			});
+			$('.countersInsert').html(html);
+			/*--/ Star Counter /--*/
+			$('.counter').counterUp({
+				delay: 15,
+				time: 2000
+			});
 		});
 })(jQuery);

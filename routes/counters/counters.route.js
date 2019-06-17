@@ -1,10 +1,10 @@
 const   router        = require('express').Router(),
-        objectid      = require('mongoose').objectId,
+        objectid      = require('mongoose').Types.ObjectId,
         counterModel  = require('../../config/models/counters/counters.model');
 
 // index 
 router.get('', (req, res)=>{
-    counterModel.find({}, (error, doc)=>{
+    counterModel.find({}, (error, docs)=>{
         if(error){
             console.log(error);
             res.json({
@@ -13,7 +13,29 @@ router.get('', (req, res)=>{
             });
         }else{
             res.json({
-                data: doc
+                docs: docs
+            });
+        }
+    });
+});
+
+router.post('', (req, res)=>{
+    let newCounter = new counterModel();
+    newCounter.icon = req.body.icon;
+    newCounter.count = req.body.count;
+    newCounter.title = req.body.title;
+
+    counterModel.create(newCounter, (error, doc)=>{
+        if(error){
+            console.log(error);
+            res.json({
+                error: true,
+                message: 'Unable to create new counter'
+            });
+        }else{
+            res.json({
+                error: false,
+                doc: doc
             });
         }
     });
@@ -21,30 +43,13 @@ router.get('', (req, res)=>{
 
 // update 
 router.put('/:id', (req, res)=>{
-    let counterUpdate = [
-        {
-            icon: req.body.icon1,
-            count: req.body.count1,
-            title: req.body.title1,
-        },
-        {
-            icon: req.body.icon2,
-            count: req.body.count2,
-            title: req.body.title2,
-        },
-        {
-            icon: req.body.icon3,
-            count: req.body.count3,
-            title: req.body.title3,
-        },
-        {
-            icon: req.body.icon4,
-            count: req.body.count4,
-            title: req.body.title4,
-        }
-    ];
+    let counterUpdate = {
+        icon: req.body.icon,
+        count: req.body.count,
+        title: req.body.title
+    };
 
-    counterModel.findOneAndUpdate({_id: objectid(req.params.id)}, {counters: counterUpdate}, (error, doc)=>{
+    counterModel.findOneAndUpdate({_id: objectid(req.params.id)}, counterUpdate, (error, doc)=>{
         if(error){
             console.log(error);
             res.json({
@@ -55,7 +60,25 @@ router.put('/:id', (req, res)=>{
         else{
             res.json({
                 error: false,
-                message: 'Update successful.'
+                message: 'Update successful.',
+                doc: doc
+            });
+        }
+    });
+});
+
+router.delete('/:id', (req, res)=>{
+    counterModel.findOneAndDelete({_id: objectid(req.params.id)}, (error, doc)=>{
+        if(error){
+            console.log(error);
+            res.json({
+                error: true,
+                message: 'Unable to delete counter'
+            });
+        }else{
+            res.json({
+                error: false,
+                doc: doc
             });
         }
     });
