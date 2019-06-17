@@ -172,4 +172,41 @@
 			});
 			$('.servicesInsert').html(html);
 		});
+
+		// Projects
+		$.get('/api/projects', (response)=>{
+			let html = '';
+			response.docs.forEach((doc)=>{
+				let date = new Date(doc.date);
+				let gallery = '';
+				doc.images.split(/\s*,\s*/g).forEach((image)=>{
+					gallery += `
+						<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}\n<a href=''>Video Demo Available Here</a>" hidden></a>
+					`;
+				});
+				html += `
+					<div class="col-md-4">
+						<div class="work-box">
+								<a href="${doc.images.split(/\s*,\s*/g)[0]}" data-lightbox="${doc.title}-mf" data-title="${doc.description}<br><a href=''>Video Demo Available Here</a>">
+										<div class="work-img">
+												<img src="${doc.images.split(/\s*,\s*/g)[0]}" alt="" class="img-fluid">
+										</div>
+										<div class="work-content">
+												<div class="row">
+														<div class="col-sm-12">
+																<h2 class="w-title">${doc.title}</h2>
+																<div class="w-more">
+																		<span class="w-ctegory">${doc.tag}</span> / <span class="w-date">${date.toDateString()}</span>
+																</div>
+														</div>
+												</div>
+										</div>
+								</a>
+								${ gallery }
+						</div>
+					</div>  
+				`;
+			});
+			$('.projectsInsert').html(html);
+		});
 })(jQuery);

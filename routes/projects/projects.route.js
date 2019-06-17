@@ -13,7 +13,7 @@ router.get('', (req, res)=>{
             });
         }else{
             res.json({
-                data: docs
+                docs: docs
             });
         }
     });
@@ -22,11 +22,12 @@ router.get('', (req, res)=>{
 // create 
 router.post('', (req, res)=>{
     let newProject = new projectModel();
-    newProject.image = req.body.image;
+    newProject.images = req.body.images;
     newProject.title = req.body.title;
-    newProject.date = req.body.date;
+    newProject.date = new Date(req.body.date);
     newProject.tag = req.body.tag;
     newProject.description = req.body.description;
+    newProject.videoLink = req.body.videoLink;
 
     projectModel.create(newProject, (error, doc)=>{
         if(error){
@@ -36,7 +37,7 @@ router.post('', (req, res)=>{
                 message: 'Unable to create project.'
             });
         }else{
-            releaseEvents.json({
+            res.json({
                 error: false,
                 message: 'Project created.'
             });
@@ -47,11 +48,12 @@ router.post('', (req, res)=>{
 // update 
 router.put('/:id', (req, res)=>{
     let projectUpdate = {
-        image: req.body.image,
+        images: req.body.images,
         title: req.body.title,
-        date: req.body.date,
+        date: new Date(req.body.date),
         tag: req.body.tag,
-        description: req.body.description
+        description: req.body.description,
+        videoLink: req.body.videoLink
     }
 
     projectModel.findOneAndUpdate({_id: objectid(req.params.id)}, projectUpdate,(error, doc)=>{
