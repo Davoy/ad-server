@@ -83,19 +83,6 @@
 		}
 	});
 
-	/*--/ Testimonials owl /--*/
-	$('#testimonial-mf').owlCarousel({
-		margin: 20,
-		autoplay: true,
-		autoplayTimeout: 4000,
-		autoplayHoverPause: true,
-		responsive: {
-			0: {
-				items: 1,
-			}
-		}
-	});
-
 	// LOAD HOME DATA ADN START TYPINGS
 	// home data
 	$.get('/api/home', (response)=>{
@@ -227,6 +214,41 @@
 			$('.counter').counterUp({
 				delay: 15,
 				time: 2000
+			});
+		});
+
+		// Testimonials
+		$.get('/api/testimonials', (response)=>{
+			let html = '';
+			response.docs.forEach((doc)=>{
+				html += `
+					<div class="testimonial-box">
+						<div class="author-test">
+							<img src="${doc.image}" alt="" class="rounded-circle b-shadow-a">
+							<span class="author">${doc.name}</span>
+						</div>
+						<div class="content-test">
+							<p class="description lead">
+								<span class="border border-light rounded-circle p-1"><i class="fa fa-quote-left"></i></span>
+								${doc.message}
+								<span class="border border-light rounded-circle p-1"><i class="fa fa-quote-right"></i></span>
+							</p>
+						</div>
+					</div>
+				`;
+			});
+			$('#testimonial-mf').html(html);
+			/*--/ Testimonials owl /--*/
+			$('#testimonial-mf').owlCarousel({
+				margin: 20,
+				autoplay: true,
+				autoplayTimeout: 4000,
+				autoplayHoverPause: true,
+				responsive: {
+					0: {
+						items: 1,
+					}
+				}
 			});
 		});
 })(jQuery);
