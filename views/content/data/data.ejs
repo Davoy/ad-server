@@ -1,53 +1,53 @@
 <div class="container-fluid bg-dark pt-5 h-100 position-absolute">
-    <div class="card text-center mt-5 border-0">
-        <div class="card-header bg-dark">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" >Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" >About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" >Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" >Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" >Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" >Counters</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" >Testimonials</a>
-            </li>
-          </ul>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><span class="currentTab"></span> Data</h5>
-          <div class="tabs home">
-            <%- include('home/home.ejs') %>            
-          </div>
-          <div class="tabs about d-none">
-            <%- include('about/about.ejs') %>            
-          </div>
-          <div class="tabs services d-none">
-            <%- include('services/services.ejs') %>            
-          </div>
-          <div class="tabs projects d-none">
-            <%- include('projects/projects.ejs') %>            
-          </div>
-          <div class="tabs blog d-none">
-            <%- include('blog/blog.ejs') %>            
-          </div>
-          <div class="tabs counters d-none">
-            <%- include('counters/counters.ejs') %>            
-          </div>
-          <div class="tabs testimonials d-none">
-            <%- include('testimonials/testimonials.ejs') %>            
-          </div>
-        </div>
+  <div class="card text-center mt-5 border-0">
+    <div class="card-header bg-dark">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" >About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" >Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" >Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" >Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" >Counters</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" >Testimonials</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><span class="currentTab"></span> Data</h5>
+      <div class="tabs home">
+        <%- include('home/home.ejs') %>            
       </div>
+      <div class="tabs about d-none">
+        <%- include('about/about.ejs') %>            
+      </div>
+      <div class="tabs services d-none">
+        <%- include('services/services.ejs') %>            
+      </div>
+      <div class="tabs projects d-none">
+        <%- include('projects/projects.ejs') %>            
+      </div>
+      <div class="tabs blog d-none">
+        <%- include('blog/blog.ejs') %>            
+      </div>
+      <div class="tabs counters d-none">
+        <%- include('counters/counters.ejs') %>            
+      </div>
+      <div class="tabs testimonials d-none">
+        <%- include('testimonials/testimonials.ejs') %>            
+      </div>
+    </div>
+  </div>
 </div>

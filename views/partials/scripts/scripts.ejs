@@ -12,7 +12,7 @@
 <script src="/lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 <!-- Template Main Javascript File -->
-<script src="/js/main.js"></script>
+<script src="/js/core.js"></script>
 <% if(page == 'data'){ %>
     <script src="/js/data.js"></script>
     <script src="/js/about.js"></script>
@@ -22,4 +22,6 @@
     <script src="/js/projects.js"></script>
     <script src="/js/services.js"></script>
     <script src="/js/testimonials.js"></script>
-<% }%>
+<% }else{%>
+    <script src="/js/main.js"></script>
+<%}%>

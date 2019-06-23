@@ -28,8 +28,6 @@ router.post('', (req, res)=>{
     newPost.author = req.user.name;
     newPost.thumbnail = req.body.thumbnail;
     newPost.content = req.body.content;
-    newPost.likes = 0;
-    newPost.dislikes = 0;
     newPost.comments = [];
     
     blodModel.create(newPost, (error, doc)=>{
@@ -72,7 +70,50 @@ router.post('/:id/dislike', (req,res)=>{
     });
 });
 
-router.post('/:id/comment', (req,res)=>{});
+router.post('/:id/comment', (req,res)=>{
+    let comment = {
+        author: req.body.author,
+        content: req.body.content,
+        avatar: null,
+        comments: [],
+    }
+    blogModel.findByIdAndUpdate({_id: objectid(req.params.id)}, {$push: { comments: comment }} , {new: true}, (error, doc)=>{
+        if(error){
+            console.log(error);
+            res.json({
+                error: true,
+                message: 'Unable to create new comment'
+            });
+        }else{
+            res.json({
+                error: false,
+                doc: doc
+            });
+        }
+    });
+});
+
+router.post('/:id/comment/:commentID', (req,res)=>{
+    let comment = {
+        author: req.body.author,
+        content: req.body.content,
+        avatar: null
+    }
+    blogModel.findByIdAndUpdate({"comments._id": objectid(req.params.commentID)}, {$push: { comments: comment }} , {new: true}, (error, doc)=>{
+        if(error){
+            console.log(error);
+            res.json({
+                error: true,
+                message: 'Unable to create new sub comment'
+            });
+        }else{
+            res.json({
+                error: false,
+                doc: doc
+            });
+        }
+    });
+});
 
 // update 
 router.put('/:id', (req, res)=>{

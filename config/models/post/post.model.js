@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    "image": String,
+    "images": [{"image":String}],
     "title": String,
     "created": {
         "type": Date,
@@ -12,8 +12,14 @@ const schema = new mongoose.Schema({
     "author": String,
     "thumbnail": String,
     "content": String,
-    "likes": Number,
-    "dislikes": Number,
+    "likes": {
+        "type": Number,
+        "default": 0
+    },
+    "dislikes": {
+        "type": Number,
+        "default": 0
+    },
     comments: [
         {
             "author": String,
