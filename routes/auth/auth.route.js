@@ -1,10 +1,12 @@
 const   router      = require('express').Router(),
-        passport    = require('passport');
+        passport    = require('passport'),
+        user        = require('../../config/models/user/user.model');
 
 // Login
 router.get('/login', passport.authenticate(), (req, res)=>{
     res.json({
-        status: 'success'
+        status: 'success',
+        session: req.user
     });
 });
 
@@ -15,5 +17,4 @@ router.get('/logout', (req, res)=>{
         status: 'success'
     });
 });
-
 module.exports = router;
