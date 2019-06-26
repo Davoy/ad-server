@@ -1,5 +1,5 @@
 $(()=>{
-    $.get('/api/home', (response)=>{
+    $.get('/home', (response)=>{
         $('input[name=homeHeadline]').val(response.doc.headline);
         $('input[name=homeTypings]').val(response.doc.typings.join(', '));
     });

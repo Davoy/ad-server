@@ -17,6 +17,6 @@ const SESSION_CONFIG = {
 
 module.exports = {
     init: ()=>{
-        session(SESSION_CONFIG);
+        return session(SESSION_CONFIG);
     }
 }

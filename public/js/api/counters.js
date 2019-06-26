@@ -3,7 +3,7 @@ $(()=>{
 });
 
 function getCounters(){
-    $.get('/api/counters', (response)=>{
+    $.get('/counters', (response)=>{
         let html = '';
         response.docs.forEach((doc)=>{
             html += `

@@ -1,5 +1,5 @@
 $(()=>{
-    $.get('/api/about', (response)=>{
+    $.get('/about', (response)=>{
         $('input[name=aboutImage]').val(response.doc.image);
         $('input[name=aboutName]').val(response.doc.name);
         $('input[name=aboutProfession]').val(response.doc.profession);

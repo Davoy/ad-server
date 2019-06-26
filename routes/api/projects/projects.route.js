@@ -1,24 +1,7 @@
 const   router        = require('express').Router(),
         objectid      = require('mongoose').Types.ObjectId,
-        projectModel  = require('../../config/models/project/project.model');
-
-// index 
-router.get('', (req, res)=>{
-    projectModel.find({}, (error, docs)=>{
-        if(error){
-            console.log(error);
-            res.json({
-                error: true,
-                message: 'Unable to retrieve project.'
-            });
-        }else{
-            res.json({
-                docs: docs
-            });
-        }
-    });
-});
-
+        projectModel  = require('../../../config/models/project/project.model');
+        
 // create 
 router.post('', (req, res)=>{
     let newProject = new projectModel();

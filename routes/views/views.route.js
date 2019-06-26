@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const router = require('express').Router(),
+      authMw = require('../../middleware/auth/auth.middleware');
 
 // MAIN
 router.get('', (req, res)=>{
@@ -17,7 +18,7 @@ router.get('/blog', (req, res)=>{
 });
 
 // DATA INTEGRITY
-router.get('/data', (req, res)=>{
+router.get('/data', authMw.isAuthenticated,(req, res)=>{
     res.render('',{
         page: 'data',
         user: req.user

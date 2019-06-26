@@ -3,7 +3,7 @@ $(()=>{
 });
 
 function getServices(){
-    $.get('/api/services', (response)=>{
+    $.get('/services', (response)=>{
         let html = '';
         response.docs.forEach((doc)=>{
             html += `

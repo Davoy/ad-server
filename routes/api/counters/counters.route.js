@@ -1,23 +1,6 @@
 const   router        = require('express').Router(),
         objectid      = require('mongoose').Types.ObjectId,
-        counterModel  = require('../../config/models/counters/counters.model');
-
-// index 
-router.get('', (req, res)=>{
-    counterModel.find({}, (error, docs)=>{
-        if(error){
-            console.log(error);
-            res.json({
-                error: true,
-                message: 'Unable to retrieve counters'
-            });
-        }else{
-            res.json({
-                docs: docs
-            });
-        }
-    });
-});
+        counterModel  = require('../../../config/models/counters/counters.model');
 
 router.post('', (req, res)=>{
     let newCounter = new counterModel();

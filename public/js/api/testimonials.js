@@ -4,7 +4,7 @@ $(()=>{
 
 function getTestimonials(){
     let html = '';
-    $.get('/api/testimonials', (response)=>{
+    $.get('/testimonials', (response)=>{
         response.docs.forEach((doc)=>{
             html += `
                 <div class="col-md-6 p-2 border rounded border-dark">

@@ -106,7 +106,7 @@ function onDeleteProject(id){
 }
 
 function getProjects(){
-    $.get('/api/projects', (response)=>{
+    $.get('/projects', (response)=>{
         let html = '';
         response.docs.forEach((doc)=>{
             html += `

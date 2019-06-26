@@ -81,4 +81,25 @@ $(()=>{
 			$('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
 		}
 	});
+
+	$('.signinAction').on('click', (event)=>{
+		event.preventDefault();
+		$.post('/auth/login', {
+				username: $('input[name=username]').val(),
+				password: $('input[name=password]').val()
+		}, (response)=>{
+				if(response.status == 'success'){
+						window.location.reload();
+				}
+		});
+	});
+
+	$('.signoutAction').on('click', (event)=>{
+			event.preventDefault();
+			$.get('/auth/logout', (response)=>{
+					if(response.status == 'success'){
+							window.location.reload();
+					}
+			});
+	});
 });

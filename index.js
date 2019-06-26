@@ -11,8 +11,8 @@ const   express  = require('express'),
 general.init(app, express);
 headers.init(app);
 db.connect();
-session.init();
-auth.init();
+app.use(session.init());
+auth.init(app);
 
 // LOAD ROUTES
 routes.init(app);

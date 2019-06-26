@@ -1,23 +1,6 @@
 const   router          = require('express').Router(),
         objectid        = require('mongoose').Types.ObjectId,
-        serviceModel    = require('../../config/models/service/service.model');
-
-// index 
-router.get('', (req, res)=>{
-    serviceModel.find({}, (error, docs)=>{
-        if(error){
-            console.log(error);
-            res.json({
-                error: true,
-                message: 'Unable to retrieve services.'
-            });
-        }else{
-            res.json({
-                docs: docs
-            });
-        }
-    });
-});
+        serviceModel    = require('../../../config/models/service/service.model');
 
 router.post('/create', (req, res)=>{
     let newService = new serviceModel();

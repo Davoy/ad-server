@@ -1,25 +1,7 @@
 const   router = require('express').Router(),
-        objectid = require('mongoose').Types.ObjectId;
-        testimonialModel = require('../../config/models/testimonial/testimonials.model');
+        objectid = require('mongoose').Types.ObjectId,
+        testimonialModel = require('../../../config/models/testimonial/testimonials.model');
 
-// index 
-router.get('', (req, res)=>{
-    testimonialModel.find({}, (error, docs)=>{
-        if(error){
-            console.log(error);
-            res.json({
-                error: true,
-                message: 'Unable to retrieve testimonials.'
-            });
-        }else{
-            res.json({
-                error: false, 
-                docs: docs
-            });
-        }
-    });
-
-});
 // create 
 router.post('', (req, res)=>{
     let newTestimonial = new testimonialModel();
