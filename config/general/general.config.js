@@ -2,7 +2,8 @@ const bodyParser        = require('body-parser'),
       compression       = require('compression'),
       cookieParser      = require('cookie-parser'),
       methodOverride    = require('method-override'),
-      path              = require('path');
+      path              = require('path'),
+      ejs               = require("ejs").__express;
 
 module.exports = {
     init: (app, express)=>{
@@ -13,5 +14,6 @@ module.exports = {
         app.use(compression());
         app.use(methodOverride('_method'));
         app.set('view engine', 'ejs');
+        app.engine('.ejs', ejs);
     }
 }

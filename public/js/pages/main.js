@@ -22,22 +22,25 @@
 		$('.aboutNameInsert').text(response.doc.name);
 		$('.aboutProfessionInsert').text(response.doc.profession);
 		$('.aboutEmailInsert').text(response.doc.email);
-		$('.contactLocationInsert').text(response.doc.email);
+		$('.contactLocationInsert').text(response.doc.location);
 		$('.aboutPhoneInsert').text(response.doc.phone);
 		$('.contactPhoneInsert').text(response.doc.phone);
-		$('.contactEmailInsert').text(response.doc.location);
+		$('.contactEmailInsert').text(response.doc.email);
 		$('.aboutBioInsert').html(response.doc.about);
 		let html = '';
 		response.doc.skills.forEach((skill)=>{
 			html += `
-				<span>${skill.title}</span> <small class="pull-right">${new Date().getFullYear()-skill.year}yrs</small>
-				<div class="progress">
-						<div class="progress-bar" role="progressbar" style="width: ${(new Date().getFullYear()-skill.year)/10 * 100}%;" aria-valuenow="${(new Date().getFullYear()-skill.year)/10}" aria-valuemin="0"aria-valuemax="100">                                    
-						</div>
-				</div>\n
+				<div class="col-md-6">
+					<span>${skill.title}</span> 
+					<small class="pull-right">${new Date().getFullYear()-skill.year}yrs</small>
+					<div class="progress">
+							<div class="progress-bar" role="progressbar" style="width: ${(new Date().getFullYear()-skill.year)/10 * 100}%;" aria-valuenow="${(new Date().getFullYear()-skill.year)/10}" aria-valuemin="0"aria-valuemax="100">                                    
+							</div>
+					</div>
+				</div>
 			`;
 		});
-		$('.aboutSkillsInsert').html(html);
+		$('.aboutSkillsInsert').html(`<div class="row">${html}</div>`);
 		html = '';
 		response.doc.socials.forEach((social)=>{
 			html += `
@@ -79,11 +82,11 @@
 			let initialImage = '';
 			doc.images.split(/\s*,\s*/g).forEach((image, idx)=>{
 				if(idx == 0){
-					initialImage = `<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}\n<a href='${doc.videoLink}' hidden="${doc.videoLink?'false':'true'}">Video Demo Available Here</a>`;
+					initialImage = `<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}">`;
 				}
 				else{
 					gallery += `
-						<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}\n<a href='${doc.videoLink}' hidden="${doc.videoLink?'false':'true'}">Video Demo Available Here</a>
+						<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}"></a>
 					`;
 				}
 			});
@@ -94,17 +97,17 @@
 								<div class="work-img">
 										<img src="${doc.images.split(/\s*,\s*/g)[0]}" alt="" class="img-fluid">
 								</div>
-								<div class="work-content">
-										<div class="row">
-												<div class="col-sm-12">
-														<h2 class="w-title">${doc.title}</h2>
-														<div class="w-more">
-																<span class="w-ctegory">${doc.tag}</span> / <span class="w-date">${date.toDateString()}</span>
-														</div>
-												</div>
-										</div>
-								</div>
 							</a>
+							<div class="work-content">
+									<div class="row">
+											<div class="col-sm-12">
+													<h2 class="w-title mb-0">${doc.title}</h2>${ !doc.videoLink || doc.videoLink == '' ? '':`<small><a href='${doc.videoLink}'>Video Demo</a></small>`}
+													<div class="w-more">
+															<span class="w-ctegory">${doc.tag}</span> / <span class="w-date">${date.toDateString()}</span>
+													</div>
+											</div>
+									</div>
+							</div>
 							${ gallery }
 					</div>
 				</div>  

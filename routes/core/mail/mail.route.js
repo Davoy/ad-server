@@ -1,5 +1,6 @@
 const router = require('express').Router(),
-      nodeMailer = require('nodemailer');
+      nodeMailer = require('nodemailer'),
+      emailConfig = require('../../../dbConfig/dbConfig');
 
 router.post('', function (req, res) {
     let transporter = nodeMailer.createTransport({
@@ -7,14 +8,14 @@ router.post('', function (req, res) {
         port: 465,
         secure: true,
         auth: {
-            user: 'ali.babygator@gmail.com',
-            pass: 'BABY25gator!!!'
+            user: emailConfig.email_user,
+            pass: emailConfig.email_pass
         }
     });
 
     let mailOptions = {
-        from:  'ali.babygator@gmail.com',
-        to: 'ali.babygator@gmail.com',
+        from:  emailConfig.email_user,
+        to: emailConfig.email_user,
         subject: req.body.subject,
         html: `<h1><b>Profile Contact - ${ req.body.name }:${ req.body.email }</b></h1><br><p>${req.body.message}</p>`
     };

@@ -1,6 +1,7 @@
 const   router      = require('express').Router(),
         objectid    = require('mongoose').Types.ObjectId;
-        aboutModel  = require('../../../config/models/about/about.model');
+        aboutModel  = require('../../../config/models/about/about.model'),
+        fs          = require('fs');
 
 // update 
 router.put('', (req, res)=>{

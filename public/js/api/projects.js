@@ -16,7 +16,7 @@ function onCreateProject(){
             </div>
             <div class="form-group text-left">
                 <label for="projectDate">Date</label>
-                <input type="text" name="projectDate" class="form-control form-control-sm" placeholder="When the project was started if in progress, otherwise completed. (MM/DD/YYY)">
+                <input type="text" name="projectDate" class="form-control form-control-sm" placeholder="(MM/DD/YYY)">
             </div>
             <div class="form-group text-left">
                 <label for="projectTag">Tag</label>
