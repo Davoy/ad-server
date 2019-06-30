@@ -1,8 +1,8 @@
 # Ignore Node Modules
-node_modules
+node_modules/
 
 # Ignore DB Configuration File
-dbConfig
+dbConfig/
 
 # Ignore .history folder
-.history
+.history/
