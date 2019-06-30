@@ -10,12 +10,12 @@ router.get('', (req, res)=>{
 });
 
 // BLOG
-router.get('/blog', (req, res)=>{
-    res.render('', {
-        page: 'blog',
-        user: req.user
-    });
-});
+// router.get('/blog', (req, res)=>{
+//     res.render('', {
+//         page: 'blog',
+//         user: req.user
+//     });
+// });
 
 // DATA INTEGRITY
 router.get('/data', authMw.isAuthenticated,(req, res)=>{

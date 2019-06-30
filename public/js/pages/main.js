@@ -76,28 +76,34 @@
 		response.docs.forEach((doc)=>{
 			let date = new Date(doc.date);
 			let gallery = '';
-			doc.images.split(/\s*,\s*/g).forEach((image)=>{
-				gallery += `
-					<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}\n<a href=''>Video Demo Available Here</a>" hidden></a>
-				`;
+			let initialImage = '';
+			doc.images.split(/\s*,\s*/g).forEach((image, idx)=>{
+				if(idx == 0){
+					initialImage = `<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}\n<a href='${doc.videoLink}' hidden="${doc.videoLink?'false':'true'}">Video Demo Available Here</a>`;
+				}
+				else{
+					gallery += `
+						<a href="${image}" data-lightbox="${doc.title}-mf" data-title="${doc.description}\n<a href='${doc.videoLink}' hidden="${doc.videoLink?'false':'true'}">Video Demo Available Here</a>
+					`;
+				}
 			});
 			html += `
 				<div class="col-md-4">
 					<div class="work-box">
-							<a href="${doc.images.split(/\s*,\s*/g)[0]}" data-lightbox="${doc.title}-mf" data-title="${doc.description}<br><a href=''>Video Demo Available Here</a>">
-									<div class="work-img">
-											<img src="${doc.images.split(/\s*,\s*/g)[0]}" alt="" class="img-fluid">
-									</div>
-									<div class="work-content">
-											<div class="row">
-													<div class="col-sm-12">
-															<h2 class="w-title">${doc.title}</h2>
-															<div class="w-more">
-																	<span class="w-ctegory">${doc.tag}</span> / <span class="w-date">${date.toDateString()}</span>
-															</div>
-													</div>
-											</div>
-									</div>
+							${initialImage}
+								<div class="work-img">
+										<img src="${doc.images.split(/\s*,\s*/g)[0]}" alt="" class="img-fluid">
+								</div>
+								<div class="work-content">
+										<div class="row">
+												<div class="col-sm-12">
+														<h2 class="w-title">${doc.title}</h2>
+														<div class="w-more">
+																<span class="w-ctegory">${doc.tag}</span> / <span class="w-date">${date.toDateString()}</span>
+														</div>
+												</div>
+										</div>
+								</div>
 							</a>
 							${ gallery }
 					</div>
@@ -166,5 +172,39 @@
 				}
 			}
 		});
+	});
+
+	// SEND EMAIL
+	$('button.contactForm').on('click', (event)=>{
+		event.preventDefault();
+		if(($('input[name=name]').val() == '' || $('input[name=email]').val() == '' || $('input[name=subject]').val() == '' || $('textarea[name=message]').val() == '')){
+			$('#warningmessage').toggleClass('d-none');
+			setTimeout(()=>{
+				$('#warningmessage').toggleClass('d-none');
+			}, 3000);
+		}else{
+			$.post('/send-mail', {
+				name: $('input[name=name]').val(),
+				email: $('input[name=email]').val(),
+				subject: $('input[name=subject]').val(),
+				message: $('textarea[name=message]').val()
+			}, (resp)=>{
+				if(resp.error){				
+					$('#errmessage').toggleClass('d-none');
+					setTimeout(()=>{
+						$('#errmessage').toggleClass('d-none');
+					}, 3000);
+				}else{
+					$('#successmessage').toggleClass('d-none');
+					setTimeout(()=>{
+						$('#successmessage').toggleClass('d-none');
+					}, 3000);
+					$('input[name=name]').val('');
+					$('input[name=email]').val('');
+					$('input[name=subject]').val('');
+					$('textarea[name=message]').val('');
+				}
+			});
+		}
 	});
 })(jQuery);

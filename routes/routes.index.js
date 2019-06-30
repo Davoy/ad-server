@@ -13,6 +13,7 @@ const   aboutRouteCore          = require('./core/about/about.route'),
         servicesRouteAPI        = require('./api/services/services.route'),
         testimonialsRouteCore   = require('./core/testimonials/testimonials.route'),
         testimonialsRouteAPI    = require('./api/testimonials/testimonials.route'),
+        sendEmailRoute          = require('./core/mail/mail.route'),
         views                   = require('./views/views.route'),
         authMw                  = require('../middleware/auth/auth.middleware');
 
@@ -27,6 +28,7 @@ module.exports = {
         app.use('/projects', projectsRouteCore);
         app.use('/services', servicesRouteCore);
         app.use('/testimonials', testimonialsRouteCore);
+        app.use('/send-mail', sendEmailRoute);
         // API ROUTES
         app.use('/api/about', authMw.isAuthenticated, aboutRouteAPI);
         app.use('/api/blog', authMw.isAuthenticated, blogRouteAPI);
