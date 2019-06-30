@@ -1,9 +1,10 @@
 const session  = require('express-session');
       mongoose = require('mongoose');
-      store    = require('connect-mongo')(session);
+      store    = require('connect-mongo')(session),
+      secret   = require('../../dbConfig/dbConfig.js');
 
 const SESSION_CONFIG = {
-    secret:"dalk2019",
+    secret: secret.secret,
     resave: false,
     saveUninitialized: false,
     cookie:{
