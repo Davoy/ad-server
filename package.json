@@ -20,7 +20,7 @@
     "express-session": "^1.16.2",
     "helmet": "^3.18.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.6.1",
+    "mongoose": "^5.7.5",
     "nodemailer": "^6.2.1",
     "npm": "^6.9.2",
     "passport": "^0.4.0",
