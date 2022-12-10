@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "ejs": "^2.6.2",
     "ejs-html-loader": "^4.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.16.2",
     "helmet": "^3.18.0",
     "method-override": "^3.0.0",
